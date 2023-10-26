@@ -1,0 +1,6 @@
+{
+  "events": {
+    "restart": "node ./.cosmos/build-cosmos.js",
+    "start": "node ./.cosmos/build-cosmos.js"
+  }
+}
