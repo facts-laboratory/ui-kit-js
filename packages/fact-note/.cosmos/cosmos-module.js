@@ -716,15 +716,15 @@ var require_react_development = __commonJS({
             }
             return 1;
           }
-          var child2;
+          var child;
           var nextName;
           var subtreeCount = 0;
           var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
           if (isArray3(children)) {
             for (var i = 0; i < children.length; i++) {
-              child2 = children[i];
-              nextName = nextNamePrefix + getElementKey(child2, i);
-              subtreeCount += mapIntoArray(child2, array, escapedPrefix, nextName, callback);
+              child = children[i];
+              nextName = nextNamePrefix + getElementKey(child, i);
+              subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
             }
           } else {
             var iteratorFn = getIteratorFn(children);
@@ -742,9 +742,9 @@ var require_react_development = __commonJS({
               var step;
               var ii = 0;
               while (!(step = iterator.next()).done) {
-                child2 = step.value;
-                nextName = nextNamePrefix + getElementKey(child2, ii++);
-                subtreeCount += mapIntoArray(child2, array, escapedPrefix, nextName, callback);
+                child = step.value;
+                nextName = nextNamePrefix + getElementKey(child, ii++);
+                subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
               }
             } else if (type === "object") {
               var childrenString = String(children);
@@ -759,8 +759,8 @@ var require_react_development = __commonJS({
           }
           var result = [];
           var count = 0;
-          mapIntoArray(children, result, "", "", function(child2) {
-            return func.call(context, child2, count++);
+          mapIntoArray(children, result, "", "", function(child) {
+            return func.call(context, child, count++);
           });
           return result;
         }
@@ -777,8 +777,8 @@ var require_react_development = __commonJS({
           }, forEachContext);
         }
         function toArray(children) {
-          return mapChildren(children, function(child2) {
-            return child2;
+          return mapChildren(children, function(child) {
+            return child;
           }) || [];
         }
         function onlyChild(children) {
@@ -887,8 +887,8 @@ var require_react_development = __commonJS({
         }
         var Uninitialized = -1;
         var Pending = 0;
-        var Resolved = 1;
-        var Rejected = 2;
+        var Resolved2 = 1;
+        var Rejected2 = 2;
         function lazyInitializer(payload) {
           if (payload._status === Uninitialized) {
             var ctor = payload._result;
@@ -896,13 +896,13 @@ var require_react_development = __commonJS({
             thenable.then(function(moduleObject2) {
               if (payload._status === Pending || payload._status === Uninitialized) {
                 var resolved = payload;
-                resolved._status = Resolved;
+                resolved._status = Resolved2;
                 resolved._result = moduleObject2;
               }
             }, function(error2) {
               if (payload._status === Pending || payload._status === Uninitialized) {
                 var rejected = payload;
-                rejected._status = Rejected;
+                rejected._status = Rejected2;
                 rejected._result = error2;
               }
             });
@@ -912,7 +912,7 @@ var require_react_development = __commonJS({
               pending._result = thenable;
             }
           }
-          if (payload._status === Resolved) {
+          if (payload._status === Resolved2) {
             var moduleObject = payload._result;
             {
               if (moduleObject === void 0) {
@@ -1087,7 +1087,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState3(initialState) {
+        function useState2(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1099,7 +1099,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect6(create, deps) {
+        function useEffect5(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1512,9 +1512,9 @@ var require_react_development = __commonJS({
           }
           if (isArray3(node)) {
             for (var i = 0; i < node.length; i++) {
-              var child2 = node[i];
-              if (isValidElement(child2)) {
-                validateExplicitKey(child2, parentType);
+              var child = node[i];
+              if (isValidElement(child)) {
+                validateExplicitKey(child, parentType);
               }
             }
           } else if (isValidElement(node)) {
@@ -1881,7 +1881,7 @@ var require_react_development = __commonJS({
         exports2.useContext = useContext4;
         exports2.useDebugValue = useDebugValue;
         exports2.useDeferredValue = useDeferredValue;
-        exports2.useEffect = useEffect6;
+        exports2.useEffect = useEffect5;
         exports2.useId = useId;
         exports2.useImperativeHandle = useImperativeHandle;
         exports2.useInsertionEffect = useInsertionEffect;
@@ -1889,7 +1889,7 @@ var require_react_development = __commonJS({
         exports2.useMemo = useMemo2;
         exports2.useReducer = useReducer;
         exports2.useRef = useRef4;
-        exports2.useState = useState3;
+        exports2.useState = useState2;
         exports2.useSyncExternalStore = useSyncExternalStore;
         exports2.useTransition = useTransition;
         exports2.version = ReactVersion;
@@ -2579,9 +2579,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React30 = require_react();
+        var React29 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React30.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React29.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -4186,11 +4186,11 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React30.Children.forEach(props.children, function(child2) {
-                  if (child2 == null) {
+                React29.Children.forEach(props.children, function(child) {
+                  if (child == null) {
                     return;
                   }
-                  if (typeof child2 === "string" || typeof child2 === "number") {
+                  if (typeof child === "string" || typeof child === "number") {
                     return;
                   }
                   if (!didWarnInvalidChild) {
@@ -6080,17 +6080,17 @@ var require_react_dom_development = __commonJS({
               break;
             }
             if (parentA.child === parentB.child) {
-              var child2 = parentA.child;
-              while (child2) {
-                if (child2 === a) {
+              var child = parentA.child;
+              while (child) {
+                if (child === a) {
                   assertIsMounted(parentA);
                   return fiber;
                 }
-                if (child2 === b) {
+                if (child === b) {
                   assertIsMounted(parentA);
                   return alternate;
                 }
-                child2 = child2.sibling;
+                child = child.sibling;
               }
               throw new Error("Unable to find node on an unmounted component.");
             }
@@ -6157,13 +6157,13 @@ var require_react_dom_development = __commonJS({
           if (node.tag === HostComponent || node.tag === HostText) {
             return node;
           }
-          var child2 = node.child;
-          while (child2 !== null) {
-            var match = findCurrentHostFiberImpl(child2);
+          var child = node.child;
+          while (child !== null) {
+            var match = findCurrentHostFiberImpl(child);
             if (match !== null) {
               return match;
             }
-            child2 = child2.sibling;
+            child = child.sibling;
           }
           return null;
         }
@@ -6175,15 +6175,15 @@ var require_react_dom_development = __commonJS({
           if (node.tag === HostComponent || node.tag === HostText) {
             return node;
           }
-          var child2 = node.child;
-          while (child2 !== null) {
-            if (child2.tag !== HostPortal) {
-              var match = findCurrentHostFiberWithNoPortalsImpl(child2);
+          var child = node.child;
+          while (child !== null) {
+            if (child.tag !== HostPortal) {
+              var match = findCurrentHostFiberWithNoPortalsImpl(child);
               if (match !== null) {
                 return match;
               }
             }
-            child2 = child2.sibling;
+            child = child.sibling;
           }
           return null;
         }
@@ -10086,22 +10086,22 @@ var require_react_dom_development = __commonJS({
           var isDifferent = textNode.nodeValue !== text;
           return isDifferent;
         }
-        function warnForDeletedHydratableElement(parentNode, child2) {
+        function warnForDeletedHydratableElement(parentNode, child) {
           {
             if (didWarnInvalidHydration) {
               return;
             }
             didWarnInvalidHydration = true;
-            error("Did not expect server HTML to contain a <%s> in <%s>.", child2.nodeName.toLowerCase(), parentNode.nodeName.toLowerCase());
+            error("Did not expect server HTML to contain a <%s> in <%s>.", child.nodeName.toLowerCase(), parentNode.nodeName.toLowerCase());
           }
         }
-        function warnForDeletedHydratableText(parentNode, child2) {
+        function warnForDeletedHydratableText(parentNode, child) {
           {
             if (didWarnInvalidHydration) {
               return;
             }
             didWarnInvalidHydration = true;
-            error('Did not expect server HTML to contain the text node "%s" in <%s>.', child2.nodeValue, parentNode.nodeName.toLowerCase());
+            error('Did not expect server HTML to contain the text node "%s" in <%s>.', child.nodeValue, parentNode.nodeName.toLowerCase());
           }
         }
         function warnForInsertedHydratedElement(parentNode, tag, props) {
@@ -10451,8 +10451,8 @@ var require_react_dom_development = __commonJS({
           updateFiberProps(domElement, props);
           return domElement;
         }
-        function appendInitialChild(parentInstance, child2) {
-          parentInstance.appendChild(child2);
+        function appendInitialChild(parentInstance, child) {
+          parentInstance.appendChild(child);
         }
         function finalizeInitialChildren(domElement, type, props, rootContainerInstance, hostContext) {
           setInitialProperties(domElement, type, props, rootContainerInstance);
@@ -10538,41 +10538,41 @@ var require_react_dom_development = __commonJS({
         function commitTextUpdate(textInstance, oldText, newText) {
           textInstance.nodeValue = newText;
         }
-        function appendChild(parentInstance, child2) {
-          parentInstance.appendChild(child2);
+        function appendChild(parentInstance, child) {
+          parentInstance.appendChild(child);
         }
-        function appendChildToContainer(container, child2) {
+        function appendChildToContainer(container, child) {
           var parentNode;
           if (container.nodeType === COMMENT_NODE) {
             parentNode = container.parentNode;
-            parentNode.insertBefore(child2, container);
+            parentNode.insertBefore(child, container);
           } else {
             parentNode = container;
-            parentNode.appendChild(child2);
+            parentNode.appendChild(child);
           }
           var reactRootContainer = container._reactRootContainer;
           if ((reactRootContainer === null || reactRootContainer === void 0) && parentNode.onclick === null) {
             trapClickOnNonInteractiveElement(parentNode);
           }
         }
-        function insertBefore(parentInstance, child2, beforeChild) {
-          parentInstance.insertBefore(child2, beforeChild);
+        function insertBefore(parentInstance, child, beforeChild) {
+          parentInstance.insertBefore(child, beforeChild);
         }
-        function insertInContainerBefore(container, child2, beforeChild) {
+        function insertInContainerBefore(container, child, beforeChild) {
           if (container.nodeType === COMMENT_NODE) {
-            container.parentNode.insertBefore(child2, beforeChild);
+            container.parentNode.insertBefore(child, beforeChild);
           } else {
-            container.insertBefore(child2, beforeChild);
+            container.insertBefore(child, beforeChild);
           }
         }
-        function removeChild(parentInstance, child2) {
-          parentInstance.removeChild(child2);
+        function removeChild(parentInstance, child) {
+          parentInstance.removeChild(child);
         }
-        function removeChildFromContainer(container, child2) {
+        function removeChildFromContainer(container, child) {
           if (container.nodeType === COMMENT_NODE) {
-            container.parentNode.removeChild(child2);
+            container.parentNode.removeChild(child);
           } else {
-            container.removeChild(child2);
+            container.removeChild(child);
           }
         }
         function clearSuspenseBoundary(parentInstance, suspenseInstance) {
@@ -10582,8 +10582,8 @@ var require_react_dom_development = __commonJS({
             var nextNode = node.nextSibling;
             parentInstance.removeChild(node);
             if (nextNode && nextNode.nodeType === COMMENT_NODE) {
-              var data2 = nextNode.data;
-              if (data2 === SUSPENSE_END_DATA) {
+              var data = nextNode.data;
+              if (data === SUSPENSE_END_DATA) {
                 if (depth === 0) {
                   parentInstance.removeChild(nextNode);
                   retryIfBlockedOn(suspenseInstance);
@@ -10591,7 +10591,7 @@ var require_react_dom_development = __commonJS({
                 } else {
                   depth--;
                 }
-              } else if (data2 === SUSPENSE_START_DATA || data2 === SUSPENSE_PENDING_START_DATA || data2 === SUSPENSE_FALLBACK_START_DATA) {
+              } else if (data === SUSPENSE_START_DATA || data === SUSPENSE_PENDING_START_DATA || data === SUSPENSE_FALLBACK_START_DATA) {
                 depth++;
               }
             }
@@ -10736,14 +10736,14 @@ var require_react_dom_development = __commonJS({
           var depth = 0;
           while (node) {
             if (node.nodeType === COMMENT_NODE) {
-              var data2 = node.data;
-              if (data2 === SUSPENSE_END_DATA) {
+              var data = node.data;
+              if (data === SUSPENSE_END_DATA) {
                 if (depth === 0) {
                   return getNextHydratableSibling(node);
                 } else {
                   depth--;
                 }
-              } else if (data2 === SUSPENSE_START_DATA || data2 === SUSPENSE_FALLBACK_START_DATA || data2 === SUSPENSE_PENDING_START_DATA) {
+              } else if (data === SUSPENSE_START_DATA || data === SUSPENSE_FALLBACK_START_DATA || data === SUSPENSE_PENDING_START_DATA) {
                 depth++;
               }
             }
@@ -10756,14 +10756,14 @@ var require_react_dom_development = __commonJS({
           var depth = 0;
           while (node) {
             if (node.nodeType === COMMENT_NODE) {
-              var data2 = node.data;
-              if (data2 === SUSPENSE_START_DATA || data2 === SUSPENSE_FALLBACK_START_DATA || data2 === SUSPENSE_PENDING_START_DATA) {
+              var data = node.data;
+              if (data === SUSPENSE_START_DATA || data === SUSPENSE_FALLBACK_START_DATA || data === SUSPENSE_PENDING_START_DATA) {
                 if (depth === 0) {
                   return node;
                 } else {
                   depth--;
                 }
-              } else if (data2 === SUSPENSE_END_DATA) {
+              } else if (data === SUSPENSE_END_DATA) {
                 depth++;
               }
             }
@@ -12633,7 +12633,7 @@ var require_react_dom_development = __commonJS({
           }
         }
         var fakeInternalInstance = {};
-        var emptyRefsObject = new React30.Component().refs;
+        var emptyRefsObject = new React29.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -13230,7 +13230,7 @@ var require_react_dom_development = __commonJS({
         var didWarnAboutStringRefs;
         var ownerHasKeyUseWarning;
         var ownerHasFunctionTypeWarning;
-        var warnForMissingKey = function(child2, returnFiber) {
+        var warnForMissingKey = function(child, returnFiber) {
         };
         {
           didWarnAboutMaps = false;
@@ -13238,17 +13238,17 @@ var require_react_dom_development = __commonJS({
           didWarnAboutStringRefs = {};
           ownerHasKeyUseWarning = {};
           ownerHasFunctionTypeWarning = {};
-          warnForMissingKey = function(child2, returnFiber) {
-            if (child2 === null || typeof child2 !== "object") {
+          warnForMissingKey = function(child, returnFiber) {
+            if (child === null || typeof child !== "object") {
               return;
             }
-            if (!child2._store || child2._store.validated || child2.key != null) {
+            if (!child._store || child._store.validated || child.key != null) {
               return;
             }
-            if (typeof child2._store !== "object") {
+            if (typeof child._store !== "object") {
               throw new Error("React Component in warnForMissingKey should have a _store. This error is likely caused by a bug in React. Please file an issue.");
             }
-            child2._store.validated = true;
+            child._store.validated = true;
             var componentName = getComponentNameFromFiber(returnFiber) || "Component";
             if (ownerHasKeyUseWarning[componentName]) {
               return;
@@ -13584,16 +13584,16 @@ var require_react_dom_development = __commonJS({
             }
             return null;
           }
-          function warnOnInvalidKey(child2, knownKeys, returnFiber) {
+          function warnOnInvalidKey(child, knownKeys, returnFiber) {
             {
-              if (typeof child2 !== "object" || child2 === null) {
+              if (typeof child !== "object" || child === null) {
                 return knownKeys;
               }
-              switch (child2.$$typeof) {
+              switch (child.$$typeof) {
                 case REACT_ELEMENT_TYPE:
                 case REACT_PORTAL_TYPE:
-                  warnForMissingKey(child2, returnFiber);
-                  var key = child2.key;
+                  warnForMissingKey(child, returnFiber);
+                  var key = child.key;
                   if (typeof key !== "string") {
                     break;
                   }
@@ -13609,8 +13609,8 @@ var require_react_dom_development = __commonJS({
                   error("Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted \u2014 the behavior is unsupported and could change in a future version.", key);
                   break;
                 case REACT_LAZY_TYPE:
-                  var payload = child2._payload;
-                  var init = child2._init;
+                  var payload = child._payload;
+                  var init = child._init;
                   warnOnInvalidKey(init(payload), knownKeys, returnFiber);
                   break;
               }
@@ -13621,8 +13621,8 @@ var require_react_dom_development = __commonJS({
             {
               var knownKeys = null;
               for (var i = 0; i < newChildren.length; i++) {
-                var child2 = newChildren[i];
-                knownKeys = warnOnInvalidKey(child2, knownKeys, returnFiber);
+                var child = newChildren[i];
+                knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
               }
             }
             var resultingFirstChild = null;
@@ -13706,8 +13706,8 @@ var require_react_dom_development = __commonJS({
               }
             }
             if (shouldTrackSideEffects) {
-              existingChildren.forEach(function(child3) {
-                return deleteChild(returnFiber, child3);
+              existingChildren.forEach(function(child2) {
+                return deleteChild(returnFiber, child2);
               });
             }
             if (getIsHydrating()) {
@@ -13740,8 +13740,8 @@ var require_react_dom_development = __commonJS({
                 var knownKeys = null;
                 var _step = _newChildren.next();
                 for (; !_step.done; _step = _newChildren.next()) {
-                  var child2 = _step.value;
-                  knownKeys = warnOnInvalidKey(child2, knownKeys, returnFiber);
+                  var child = _step.value;
+                  knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
                 }
               }
             }
@@ -13831,8 +13831,8 @@ var require_react_dom_development = __commonJS({
               }
             }
             if (shouldTrackSideEffects) {
-              existingChildren.forEach(function(child3) {
-                return deleteChild(returnFiber, child3);
+              existingChildren.forEach(function(child2) {
+                return deleteChild(returnFiber, child2);
               });
             }
             if (getIsHydrating()) {
@@ -13855,14 +13855,14 @@ var require_react_dom_development = __commonJS({
           }
           function reconcileSingleElement(returnFiber, currentFirstChild, element, lanes) {
             var key = element.key;
-            var child2 = currentFirstChild;
-            while (child2 !== null) {
-              if (child2.key === key) {
+            var child = currentFirstChild;
+            while (child !== null) {
+              if (child.key === key) {
                 var elementType = element.type;
                 if (elementType === REACT_FRAGMENT_TYPE) {
-                  if (child2.tag === Fragment2) {
-                    deleteRemainingChildren(returnFiber, child2.sibling);
-                    var existing = useFiber(child2, element.props.children);
+                  if (child.tag === Fragment2) {
+                    deleteRemainingChildren(returnFiber, child.sibling);
+                    var existing = useFiber(child, element.props.children);
                     existing.return = returnFiber;
                     {
                       existing._debugSource = element._source;
@@ -13871,15 +13871,15 @@ var require_react_dom_development = __commonJS({
                     return existing;
                   }
                 } else {
-                  if (child2.elementType === elementType || // Keep this check inline so it only runs on the false path:
-                  isCompatibleFamilyForHotReloading(child2, element) || // Lazy types should reconcile their resolved type.
+                  if (child.elementType === elementType || // Keep this check inline so it only runs on the false path:
+                  isCompatibleFamilyForHotReloading(child, element) || // Lazy types should reconcile their resolved type.
                   // We need to do this after the Hot Reloading check above,
                   // because hot reloading has different semantics than prod because
                   // it doesn't resuspend. So we can't let the call below suspend.
-                  typeof elementType === "object" && elementType !== null && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === child2.type) {
-                    deleteRemainingChildren(returnFiber, child2.sibling);
-                    var _existing = useFiber(child2, element.props);
-                    _existing.ref = coerceRef(returnFiber, child2, element);
+                  typeof elementType === "object" && elementType !== null && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === child.type) {
+                    deleteRemainingChildren(returnFiber, child.sibling);
+                    var _existing = useFiber(child, element.props);
+                    _existing.ref = coerceRef(returnFiber, child, element);
                     _existing.return = returnFiber;
                     {
                       _existing._debugSource = element._source;
@@ -13888,12 +13888,12 @@ var require_react_dom_development = __commonJS({
                     return _existing;
                   }
                 }
-                deleteRemainingChildren(returnFiber, child2);
+                deleteRemainingChildren(returnFiber, child);
                 break;
               } else {
-                deleteChild(returnFiber, child2);
+                deleteChild(returnFiber, child);
               }
-              child2 = child2.sibling;
+              child = child.sibling;
             }
             if (element.type === REACT_FRAGMENT_TYPE) {
               var created = createFiberFromFragment(element.props.children, returnFiber.mode, lanes, element.key);
@@ -13908,22 +13908,22 @@ var require_react_dom_development = __commonJS({
           }
           function reconcileSinglePortal(returnFiber, currentFirstChild, portal, lanes) {
             var key = portal.key;
-            var child2 = currentFirstChild;
-            while (child2 !== null) {
-              if (child2.key === key) {
-                if (child2.tag === HostPortal && child2.stateNode.containerInfo === portal.containerInfo && child2.stateNode.implementation === portal.implementation) {
-                  deleteRemainingChildren(returnFiber, child2.sibling);
-                  var existing = useFiber(child2, portal.children || []);
+            var child = currentFirstChild;
+            while (child !== null) {
+              if (child.key === key) {
+                if (child.tag === HostPortal && child.stateNode.containerInfo === portal.containerInfo && child.stateNode.implementation === portal.implementation) {
+                  deleteRemainingChildren(returnFiber, child.sibling);
+                  var existing = useFiber(child, portal.children || []);
                   existing.return = returnFiber;
                   return existing;
                 } else {
-                  deleteRemainingChildren(returnFiber, child2);
+                  deleteRemainingChildren(returnFiber, child);
                   break;
                 }
               } else {
-                deleteChild(returnFiber, child2);
+                deleteChild(returnFiber, child);
               }
-              child2 = child2.sibling;
+              child = child.sibling;
             }
             var created = createFiberFromPortal(portal, returnFiber.mode, lanes);
             created.return = returnFiber;
@@ -13986,10 +13986,10 @@ var require_react_dom_development = __commonJS({
           newChild.sibling = null;
         }
         function resetChildFibers(workInProgress2, lanes) {
-          var child2 = workInProgress2.child;
-          while (child2 !== null) {
-            resetWorkInProgress(child2, lanes);
-            child2 = child2.sibling;
+          var child = workInProgress2.child;
+          while (child !== null) {
+            resetWorkInProgress(child, lanes);
+            child = child.sibling;
           }
         }
         var NO_CONTEXT = {};
@@ -16083,10 +16083,10 @@ var require_react_dom_development = __commonJS({
           passiveEffectStartTime = now$1();
         }
         function transferActualDuration(fiber) {
-          var child2 = fiber.child;
-          while (child2) {
-            fiber.actualDuration += child2.actualDuration;
-            child2 = child2.sibling;
+          var child = fiber.child;
+          while (child) {
+            fiber.actualDuration += child.actualDuration;
+            child = child.sibling;
           }
         }
         function createCapturedValueAtFiber(value, source) {
@@ -16481,11 +16481,11 @@ var require_react_dom_development = __commonJS({
                 );
               }
             }
-            var child2 = createFiberFromTypeAndProps(Component.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
-            child2.ref = workInProgress2.ref;
-            child2.return = workInProgress2;
-            workInProgress2.child = child2;
-            return child2;
+            var child = createFiberFromTypeAndProps(Component.type, null, nextProps, workInProgress2, workInProgress2.mode, renderLanes2);
+            child.ref = workInProgress2.ref;
+            child.return = workInProgress2;
+            workInProgress2.child = child;
+            return child;
           }
           {
             var _type = Component.type;
@@ -16861,9 +16861,9 @@ var require_react_dom_development = __commonJS({
               return mountHostRootWithoutHydrating(current2, workInProgress2, nextChildren, renderLanes2, _recoverableError);
             } else {
               enterHydrationState(workInProgress2);
-              var child2 = mountChildFibers(workInProgress2, null, nextChildren, renderLanes2);
-              workInProgress2.child = child2;
-              var node = child2;
+              var child = mountChildFibers(workInProgress2, null, nextChildren, renderLanes2);
+              workInProgress2.child = child;
+              var node = child;
               while (node) {
                 node.flags = node.flags & ~Placement | Hydrating;
                 node = node.sibling;
@@ -16920,29 +16920,29 @@ var require_react_dom_development = __commonJS({
           workInProgress2.type = Component;
           var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component);
           var resolvedProps = resolveDefaultProps(Component, props);
-          var child2;
+          var child;
           switch (resolvedTag) {
             case FunctionComponent: {
               {
                 validateFunctionComponentInDev(workInProgress2, Component);
                 workInProgress2.type = Component = resolveFunctionForHotReloading(Component);
               }
-              child2 = updateFunctionComponent(null, workInProgress2, Component, resolvedProps, renderLanes2);
-              return child2;
+              child = updateFunctionComponent(null, workInProgress2, Component, resolvedProps, renderLanes2);
+              return child;
             }
             case ClassComponent: {
               {
                 workInProgress2.type = Component = resolveClassForHotReloading(Component);
               }
-              child2 = updateClassComponent(null, workInProgress2, Component, resolvedProps, renderLanes2);
-              return child2;
+              child = updateClassComponent(null, workInProgress2, Component, resolvedProps, renderLanes2);
+              return child;
             }
             case ForwardRef2: {
               {
                 workInProgress2.type = Component = resolveForwardRefForHotReloading(Component);
               }
-              child2 = updateForwardRef(null, workInProgress2, Component, resolvedProps, renderLanes2);
-              return child2;
+              child = updateForwardRef(null, workInProgress2, Component, resolvedProps, renderLanes2);
+              return child;
             }
             case MemoComponent: {
               {
@@ -16959,7 +16959,7 @@ var require_react_dom_development = __commonJS({
                   }
                 }
               }
-              child2 = updateMemoComponent(
+              child = updateMemoComponent(
                 null,
                 workInProgress2,
                 Component,
@@ -16967,7 +16967,7 @@ var require_react_dom_development = __commonJS({
                 // The inner type can have defaults too
                 renderLanes2
               );
-              return child2;
+              return child;
             }
           }
           var hint = "";
@@ -17922,9 +17922,9 @@ var require_react_dom_development = __commonJS({
                   return updateSuspenseComponent(current2, workInProgress2, renderLanes2);
                 } else {
                   pushSuspenseContext(workInProgress2, setDefaultShallowSuspenseContext(suspenseStackCursor.current));
-                  var child2 = bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
-                  if (child2 !== null) {
-                    return child2.sibling;
+                  var child = bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
+                  if (child !== null) {
+                    return child.sibling;
                   } else {
                     return null;
                   }
@@ -18198,14 +18198,14 @@ var require_react_dom_development = __commonJS({
             if ((completedWork.mode & ProfileMode) !== NoMode) {
               var actualDuration = completedWork.actualDuration;
               var treeBaseDuration = completedWork.selfBaseDuration;
-              var child2 = completedWork.child;
-              while (child2 !== null) {
-                newChildLanes = mergeLanes(newChildLanes, mergeLanes(child2.lanes, child2.childLanes));
-                subtreeFlags |= child2.subtreeFlags;
-                subtreeFlags |= child2.flags;
-                actualDuration += child2.actualDuration;
-                treeBaseDuration += child2.treeBaseDuration;
-                child2 = child2.sibling;
+              var child = completedWork.child;
+              while (child !== null) {
+                newChildLanes = mergeLanes(newChildLanes, mergeLanes(child.lanes, child.childLanes));
+                subtreeFlags |= child.subtreeFlags;
+                subtreeFlags |= child.flags;
+                actualDuration += child.actualDuration;
+                treeBaseDuration += child.treeBaseDuration;
+                child = child.sibling;
               }
               completedWork.actualDuration = actualDuration;
               completedWork.treeBaseDuration = treeBaseDuration;
@@ -18855,10 +18855,10 @@ var require_react_dom_development = __commonJS({
         function commitBeforeMutationEffects_begin() {
           while (nextEffect !== null) {
             var fiber = nextEffect;
-            var child2 = fiber.child;
-            if ((fiber.subtreeFlags & BeforeMutationMask) !== NoFlags && child2 !== null) {
-              child2.return = fiber;
-              nextEffect = child2;
+            var child = fiber.child;
+            if ((fiber.subtreeFlags & BeforeMutationMask) !== NoFlags && child !== null) {
+              child.return = fiber;
+              nextEffect = child;
             } else {
               commitBeforeMutationEffects_complete();
             }
@@ -19508,10 +19508,10 @@ var require_react_dom_development = __commonJS({
           } else if (tag === HostPortal)
             ;
           else {
-            var child2 = node.child;
-            if (child2 !== null) {
-              insertOrAppendPlacementNodeIntoContainer(child2, before, parent2);
-              var sibling = child2.sibling;
+            var child = node.child;
+            if (child !== null) {
+              insertOrAppendPlacementNodeIntoContainer(child, before, parent2);
+              var sibling = child.sibling;
               while (sibling !== null) {
                 insertOrAppendPlacementNodeIntoContainer(sibling, before, parent2);
                 sibling = sibling.sibling;
@@ -19532,10 +19532,10 @@ var require_react_dom_development = __commonJS({
           } else if (tag === HostPortal)
             ;
           else {
-            var child2 = node.child;
-            if (child2 !== null) {
-              insertOrAppendPlacementNode(child2, before, parent2);
-              var sibling = child2.sibling;
+            var child = node.child;
+            if (child !== null) {
+              insertOrAppendPlacementNode(child, before, parent2);
+              var sibling = child.sibling;
               while (sibling !== null) {
                 insertOrAppendPlacementNode(sibling, before, parent2);
                 sibling = sibling.sibling;
@@ -19579,10 +19579,10 @@ var require_react_dom_development = __commonJS({
           detachFiberMutation(deletedFiber);
         }
         function recursivelyTraverseDeletionEffects(finishedRoot, nearestMountedAncestor, parent2) {
-          var child2 = parent2.child;
-          while (child2 !== null) {
-            commitDeletionEffectsOnFiber(finishedRoot, nearestMountedAncestor, child2);
-            child2 = child2.sibling;
+          var child = parent2.child;
+          while (child !== null) {
+            commitDeletionEffectsOnFiber(finishedRoot, nearestMountedAncestor, child);
+            child = child.sibling;
           }
         }
         function commitDeletionEffectsOnFiber(finishedRoot, nearestMountedAncestor, deletedFiber) {
@@ -19777,11 +19777,11 @@ var require_react_dom_development = __commonJS({
           }
           var prevDebugFiber = getCurrentFiber();
           if (parentFiber.subtreeFlags & MutationMask) {
-            var child2 = parentFiber.child;
-            while (child2 !== null) {
-              setCurrentFiber(child2);
-              commitMutationEffectsOnFiber(child2, root3);
-              child2 = child2.sibling;
+            var child = parentFiber.child;
+            while (child !== null) {
+              setCurrentFiber(child);
+              commitMutationEffectsOnFiber(child, root3);
+              child = child.sibling;
             }
           }
           setCurrentFiber(prevDebugFiber);
@@ -20042,16 +20042,16 @@ var require_react_dom_development = __commonJS({
                   nextEffect = fiber;
                   reappearLayoutEffects_begin(fiber);
                 }
-                var child2 = firstChild;
-                while (child2 !== null) {
-                  nextEffect = child2;
+                var child = firstChild;
+                while (child !== null) {
+                  nextEffect = child;
                   commitLayoutEffects_begin(
-                    child2,
+                    child,
                     // New root; bubble back up to here and stop.
                     root3,
                     committedLanes
                   );
-                  child2 = child2.sibling;
+                  child = child.sibling;
                 }
                 nextEffect = fiber;
                 offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden;
@@ -20269,7 +20269,7 @@ var require_react_dom_development = __commonJS({
         function commitPassiveUnmountEffects_begin() {
           while (nextEffect !== null) {
             var fiber = nextEffect;
-            var child2 = fiber.child;
+            var child = fiber.child;
             if ((nextEffect.flags & ChildDeletion) !== NoFlags) {
               var deletions = fiber.deletions;
               if (deletions !== null) {
@@ -20295,9 +20295,9 @@ var require_react_dom_development = __commonJS({
                 nextEffect = fiber;
               }
             }
-            if ((fiber.subtreeFlags & PassiveMask) !== NoFlags && child2 !== null) {
-              child2.return = fiber;
-              nextEffect = child2;
+            if ((fiber.subtreeFlags & PassiveMask) !== NoFlags && child !== null) {
+              child.return = fiber;
+              nextEffect = child;
             } else {
               commitPassiveUnmountEffects_complete();
             }
@@ -20342,10 +20342,10 @@ var require_react_dom_development = __commonJS({
             setCurrentFiber(fiber);
             commitPassiveUnmountInsideDeletedTreeOnFiber(fiber, nearestMountedAncestor);
             resetCurrentFiber();
-            var child2 = fiber.child;
-            if (child2 !== null) {
-              child2.return = fiber;
-              nextEffect = child2;
+            var child = fiber.child;
+            if (child !== null) {
+              child.return = fiber;
+              nextEffect = child;
             } else {
               commitPassiveUnmountEffectsInsideOfDeletedTree_complete(deletedSubtreeRoot);
             }
@@ -20931,10 +20931,10 @@ var require_react_dom_development = __commonJS({
                 }
               }
             }
-            var child2 = node.child;
-            if (node.subtreeFlags & StoreConsistency && child2 !== null) {
-              child2.return = node;
-              node = child2;
+            var child = node.child;
+            if (node.subtreeFlags & StoreConsistency && child !== null) {
+              child.return = node;
+              node = child;
               continue;
             }
             if (node === finishedWork) {
@@ -21337,10 +21337,10 @@ var require_react_dom_development = __commonJS({
               if ((completedWork.mode & ProfileMode) !== NoMode) {
                 stopProfilerTimerIfRunningAndRecordDelta(completedWork, false);
                 var actualDuration = completedWork.actualDuration;
-                var child2 = completedWork.child;
-                while (child2 !== null) {
-                  actualDuration += child2.actualDuration;
-                  child2 = child2.sibling;
+                var child = completedWork.child;
+                while (child !== null) {
+                  actualDuration += child.actualDuration;
+                  child = child.sibling;
                 }
                 completedWork.actualDuration = actualDuration;
               }
@@ -22117,7 +22117,7 @@ var require_react_dom_development = __commonJS({
         };
         function scheduleFibersWithFamiliesRecursively(fiber, updatedFamilies, staleFamilies) {
           {
-            var alternate = fiber.alternate, child2 = fiber.child, sibling = fiber.sibling, tag = fiber.tag, type = fiber.type;
+            var alternate = fiber.alternate, child = fiber.child, sibling = fiber.sibling, tag = fiber.tag, type = fiber.type;
             var candidateType = null;
             switch (tag) {
               case FunctionComponent:
@@ -22162,8 +22162,8 @@ var require_react_dom_development = __commonJS({
                 scheduleUpdateOnFiber(_root, fiber, SyncLane, NoTimestamp);
               }
             }
-            if (child2 !== null && !needsRemount) {
-              scheduleFibersWithFamiliesRecursively(child2, updatedFamilies, staleFamilies);
+            if (child !== null && !needsRemount) {
+              scheduleFibersWithFamiliesRecursively(child, updatedFamilies, staleFamilies);
             }
             if (sibling !== null) {
               scheduleFibersWithFamiliesRecursively(sibling, updatedFamilies, staleFamilies);
@@ -22182,7 +22182,7 @@ var require_react_dom_development = __commonJS({
         };
         function findHostInstancesForMatchingFibersRecursively(fiber, types, hostInstances) {
           {
-            var child2 = fiber.child, sibling = fiber.sibling, tag = fiber.tag, type = fiber.type;
+            var child = fiber.child, sibling = fiber.sibling, tag = fiber.tag, type = fiber.type;
             var candidateType = null;
             switch (tag) {
               case FunctionComponent:
@@ -22203,8 +22203,8 @@ var require_react_dom_development = __commonJS({
             if (didMatch) {
               findHostInstancesForFiberShallowly(fiber, hostInstances);
             } else {
-              if (child2 !== null) {
-                findHostInstancesForMatchingFibersRecursively(child2, types, hostInstances);
+              if (child !== null) {
+                findHostInstancesForMatchingFibersRecursively(child, types, hostInstances);
               }
             }
             if (sibling !== null) {
@@ -24261,12 +24261,12 @@ var HASH_UNDEFINED = "__lodash_hash_undefined__";
 var objectProto9 = Object.prototype;
 var hasOwnProperty7 = objectProto9.hasOwnProperty;
 function hashGet(key) {
-  var data2 = this.__data__;
+  var data = this.__data__;
   if (nativeCreate_default) {
-    var result = data2[key];
+    var result = data[key];
     return result === HASH_UNDEFINED ? void 0 : result;
   }
-  return hasOwnProperty7.call(data2, key) ? data2[key] : void 0;
+  return hasOwnProperty7.call(data, key) ? data[key] : void 0;
 }
 var hashGet_default = hashGet;
 
@@ -24274,17 +24274,17 @@ var hashGet_default = hashGet;
 var objectProto10 = Object.prototype;
 var hasOwnProperty8 = objectProto10.hasOwnProperty;
 function hashHas(key) {
-  var data2 = this.__data__;
-  return nativeCreate_default ? data2[key] !== void 0 : hasOwnProperty8.call(data2, key);
+  var data = this.__data__;
+  return nativeCreate_default ? data[key] !== void 0 : hasOwnProperty8.call(data, key);
 }
 var hashHas_default = hashHas;
 
 // ../../node_modules/lodash-es/_hashSet.js
 var HASH_UNDEFINED2 = "__lodash_hash_undefined__";
 function hashSet(key, value) {
-  var data2 = this.__data__;
+  var data = this.__data__;
   this.size += this.has(key) ? 0 : 1;
-  data2[key] = nativeCreate_default && value === void 0 ? HASH_UNDEFINED2 : value;
+  data[key] = nativeCreate_default && value === void 0 ? HASH_UNDEFINED2 : value;
   return this;
 }
 var hashSet_default = hashSet;
@@ -24328,15 +24328,15 @@ var assocIndexOf_default = assocIndexOf;
 var arrayProto = Array.prototype;
 var splice = arrayProto.splice;
 function listCacheDelete(key) {
-  var data2 = this.__data__, index = assocIndexOf_default(data2, key);
+  var data = this.__data__, index = assocIndexOf_default(data, key);
   if (index < 0) {
     return false;
   }
-  var lastIndex = data2.length - 1;
+  var lastIndex = data.length - 1;
   if (index == lastIndex) {
-    data2.pop();
+    data.pop();
   } else {
-    splice.call(data2, index, 1);
+    splice.call(data, index, 1);
   }
   --this.size;
   return true;
@@ -24345,8 +24345,8 @@ var listCacheDelete_default = listCacheDelete;
 
 // ../../node_modules/lodash-es/_listCacheGet.js
 function listCacheGet(key) {
-  var data2 = this.__data__, index = assocIndexOf_default(data2, key);
-  return index < 0 ? void 0 : data2[index][1];
+  var data = this.__data__, index = assocIndexOf_default(data, key);
+  return index < 0 ? void 0 : data[index][1];
 }
 var listCacheGet_default = listCacheGet;
 
@@ -24358,12 +24358,12 @@ var listCacheHas_default = listCacheHas;
 
 // ../../node_modules/lodash-es/_listCacheSet.js
 function listCacheSet(key, value) {
-  var data2 = this.__data__, index = assocIndexOf_default(data2, key);
+  var data = this.__data__, index = assocIndexOf_default(data, key);
   if (index < 0) {
     ++this.size;
-    data2.push([key, value]);
+    data.push([key, value]);
   } else {
-    data2[index][1] = value;
+    data[index][1] = value;
   }
   return this;
 }
@@ -24409,8 +24409,8 @@ var isKeyable_default = isKeyable;
 
 // ../../node_modules/lodash-es/_getMapData.js
 function getMapData(map, key) {
-  var data2 = map.__data__;
-  return isKeyable_default(key) ? data2[typeof key == "string" ? "string" : "hash"] : data2.map;
+  var data = map.__data__;
+  return isKeyable_default(key) ? data[typeof key == "string" ? "string" : "hash"] : data.map;
 }
 var getMapData_default = getMapData;
 
@@ -24436,9 +24436,9 @@ var mapCacheHas_default = mapCacheHas;
 
 // ../../node_modules/lodash-es/_mapCacheSet.js
 function mapCacheSet(key, value) {
-  var data2 = getMapData_default(this, key), size = data2.size;
-  data2.set(key, value);
-  this.size += data2.size == size ? 0 : 1;
+  var data = getMapData_default(this, key), size = data.size;
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
   return this;
 }
 var mapCacheSet_default = mapCacheSet;
@@ -24631,8 +24631,8 @@ var stackClear_default = stackClear;
 
 // ../../node_modules/lodash-es/_stackDelete.js
 function stackDelete(key) {
-  var data2 = this.__data__, result = data2["delete"](key);
-  this.size = data2.size;
+  var data = this.__data__, result = data["delete"](key);
+  this.size = data.size;
   return result;
 }
 var stackDelete_default = stackDelete;
@@ -24652,26 +24652,26 @@ var stackHas_default = stackHas;
 // ../../node_modules/lodash-es/_stackSet.js
 var LARGE_ARRAY_SIZE = 200;
 function stackSet(key, value) {
-  var data2 = this.__data__;
-  if (data2 instanceof ListCache_default) {
-    var pairs = data2.__data__;
+  var data = this.__data__;
+  if (data instanceof ListCache_default) {
+    var pairs = data.__data__;
     if (!Map_default || pairs.length < LARGE_ARRAY_SIZE - 1) {
       pairs.push([key, value]);
-      this.size = ++data2.size;
+      this.size = ++data.size;
       return this;
     }
-    data2 = this.__data__ = new MapCache_default(pairs);
+    data = this.__data__ = new MapCache_default(pairs);
   }
-  data2.set(key, value);
-  this.size = data2.size;
+  data.set(key, value);
+  this.size = data.size;
   return this;
 }
 var stackSet_default = stackSet;
 
 // ../../node_modules/lodash-es/_Stack.js
 function Stack(entries) {
-  var data2 = this.__data__ = new ListCache_default(entries);
-  this.size = data2.size;
+  var data = this.__data__ = new ListCache_default(entries);
+  this.size = data.size;
 }
 Stack.prototype.clear = stackClear_default;
 Stack.prototype["delete"] = stackDelete_default;
@@ -25064,15 +25064,15 @@ function baseIsMatch(object, source, matchData, customizer) {
   }
   object = Object(object);
   while (index--) {
-    var data2 = matchData[index];
-    if (noCustomizer && data2[2] ? data2[1] !== object[data2[0]] : !(data2[0] in object)) {
+    var data = matchData[index];
+    if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
       return false;
     }
   }
   while (++index < length) {
-    data2 = matchData[index];
-    var key = data2[0], objValue = object[key], srcValue = data2[1];
-    if (noCustomizer && data2[2]) {
+    data = matchData[index];
+    var key = data[0], objValue = object[key], srcValue = data[1];
+    if (noCustomizer && data[2]) {
       if (objValue === void 0 && !(key in object)) {
         return false;
       }
@@ -25409,14 +25409,14 @@ function isNull(value) {
 function isUndefined(value) {
   return value === void 0;
 }
-function isPrimitiveData(data2) {
-  return isString(data2) || isNumber(data2) || isBoolean(data2) || isNull(data2) || isUndefined(data2);
+function isPrimitiveData(data) {
+  return isString(data) || isNumber(data) || isBoolean(data) || isNull(data) || isUndefined(data);
 }
-function isObject2(data2) {
-  return isPlainObject_default(data2) && !(0, import_react_is.isElement)(data2);
+function isObject2(data) {
+  return isPlainObject_default(data) && !(0, import_react_is.isElement)(data);
 }
-function isArray2(data2) {
-  return Array.isArray(data2);
+function isArray2(data) {
+  return Array.isArray(data);
 }
 
 // ../../node_modules/react-cosmos-core/dist/fixtureState/createValues.js
@@ -25427,26 +25427,26 @@ function createValues(obj) {
   });
   return values;
 }
-function createValue(data2) {
-  if (isPrimitiveData(data2))
-    return { type: "primitive", data: data2 };
-  if (isArray2(data2))
+function createValue(data) {
+  if (isPrimitiveData(data))
+    return { type: "primitive", data };
+  if (isArray2(data))
     return {
       type: "array",
-      values: data2.map((i) => createValue(i))
+      values: data.map((i) => createValue(i))
     };
-  if (isObject2(data2))
+  if (isObject2(data))
     return {
       type: "object",
-      values: createValues(data2)
+      values: createValues(data)
     };
   return {
     type: "unserializable",
-    stringifiedData: stringifyUnserializableData(data2)
+    stringifiedData: stringifyUnserializableData(data)
   };
 }
-function stringifyUnserializableData(data2) {
-  return (0, import_react_is2.isElement)(data2) ? "<React.Element />" : String(data2);
+function stringifyUnserializableData(data) {
+  return (0, import_react_is2.isElement)(data) ? "<React.Element />" : String(data);
 }
 
 // ../../node_modules/react-cosmos-core/dist/fixtureState/extendWithValues.js
@@ -25457,15 +25457,15 @@ function extendWithValues(obj, values) {
   });
   return extendedObj;
 }
-function extendWithValue(data2, value) {
+function extendWithValue(data, value) {
   if (value.type === "unserializable")
-    return data2;
+    return data;
   if (value.type === "object") {
-    const obj = isObject2(data2) ? data2 : {};
+    const obj = isObject2(data) ? data : {};
     return extendWithValues(obj, value.values);
   }
   if (value.type === "array") {
-    const array = isArray2(data2) ? data2 : [];
+    const array = isArray2(data) ? data : [];
     return value.values.map((v, idx) => extendWithValue(array[idx], v));
   }
   return value.data;
@@ -25732,7 +25732,7 @@ function isRootPath(elPath) {
 // ../../node_modules/react-cosmos-renderer/dist/fixture/FixtureCapture/shared/nodeTree/findElementPaths.js
 function findElementPaths(node, curPath = "") {
   if (Array.isArray(node)) {
-    return flatten_default(node.map((child2, idx) => findElementPaths(child2, `${curPath}[${idx}]`)));
+    return flatten_default(node.map((child, idx) => findElementPaths(child, `${curPath}[${idx}]`)));
   }
   if (!isReactElement(node)) {
     return [];
@@ -26766,36 +26766,6 @@ __export(cosmos_imports_exports, {
   rendererConfig: () => rendererConfig
 });
 
-// src/Test.fixture.jsx
-var Test_fixture_exports = {};
-__export(Test_fixture_exports, {
-  default: () => Test_fixture_default
-});
-
-// src/Test.jsx
-var import_react33 = __toESM(require_react(), 1);
-var Test = ({ tx = "test" }) => {
-  const [dataClone, setData] = (0, import_react33.useState)();
-  const [error, setError] = (0, import_react33.useState)();
-  (0, import_react33.useEffect)(() => {
-  }, [tx, error]);
-  if (error)
-    return errorComponent ? errorComponent : /* @__PURE__ */ import_react33.default.createElement("p", null, "An error occurred.");
-  if (!data && !tx)
-    return /* @__PURE__ */ import_react33.default.createElement("p", null, "Pass a tx to the query string");
-  if (import_react33.default.isValidElement(child)) {
-    return import_react33.default.cloneElement(child, { data: dataClone });
-  }
-  if (!import_react33.default.isValidElement(child)) {
-    return /* @__PURE__ */ import_react33.default.createElement("p", null, "INVALID");
-  }
-  return loadingComponent ? loadingComponent : /* @__PURE__ */ import_react33.default.createElement("p", null, "Loading...");
-};
-var Test_default = Test;
-
-// src/Test.fixture.jsx
-var Test_fixture_default = Test_default;
-
 // src/App.fixture.jsx
 var App_fixture_exports = {};
 __export(App_fixture_exports, {
@@ -26803,23 +26773,103 @@ __export(App_fixture_exports, {
 });
 
 // src/App.jsx
-var import_react34 = __toESM(require_react(), 1);
-var FactNote = ({ tx = "test" }) => {
-  const [dataClone, setData] = (0, import_react34.useState)();
-  const [error, setError] = (0, import_react34.useState)();
-  (0, import_react34.useEffect)(() => {
+var import_react33 = __toESM(require_react(), 1);
+
+// src/hyper-async.js
+var Async = (fork) => ({
+  fork,
+  toPromise: () => new Promise((resolve, reject) => fork(reject, resolve)),
+  map: (fn) => Async((rej, res2) => fork(rej, (x) => res2(fn(x)))),
+  bimap: (f, g) => Async(
+    (rej, res2) => fork(
+      (x) => rej(f(x)),
+      (x) => res2(g(x))
+    )
+  ),
+  chain: (fn) => Async((rej, res2) => fork(rej, (x) => fn(x).fork(rej, res2))),
+  bichain: (f, g) => Async(
+    (rej, res2) => fork(
+      (x) => f(x).fork(rej, res2),
+      (x) => g(x).fork(rej, res2)
+    )
+  ),
+  fold: (f, g) => Async(
+    (rej, res2) => fork(
+      (x) => f(x).fork(rej, res2),
+      (x) => g(x).fork(rej, res2)
+    )
+  )
+});
+var of = (x) => Async((rej, res2) => res2(x));
+var Resolved = (x) => Async((rej, res2) => res2(x));
+var Rejected = (x) => Async((rej, res2) => rej(x));
+var fromPromise = (f) => (...args) => Async(
+  (rej, res2) => f(...args).then(res2).catch(rej)
+);
+var hyper_async_default = {
+  of,
+  fromPromise,
+  Resolved,
+  Rejected
+};
+
+// src/fetch-data.js
+var { fromPromise: fromPromise2, of: of2 } = hyper_async_default;
+var fetchTx = async (tx) => of2(getHost()).chain((host) => fromPromise2(fetchTxFromGQL)(tx, host)).toPromise();
+async function fetchTxFromGQL(tx, host) {
+  const result = fetch(`https://${host}/graphql`, {
+    headers: {
+      accept: "*/*",
+      "accept-language": "en-US,en;q=0.6",
+      "content-type": "application/json"
+    },
+    body: `{"operationName":null,"variables":{},"query":"{\\n  transactions(\\n    first: 100\\n    tags: [{name: \\"Protocol-Name\\", values: [\\"Facts\\"]}, {name: \\"Data-Source\\", values: [\\"${tx}\\"]}]\\n  ) {\\n    edges {\\n      node {\\n        block {\\n          timestamp\\n          height\\n        }\\n        id\\n        owner {\\n          address\\n        }\\n        tags {\\n          name\\n          value\\n        }\\n      }\\n    }\\n  }\\n}\\n"}`,
+    method: "POST"
+  });
+  if (result.ok) {
+    return getEdges(await res.json()).map(getNode);
+  }
+  throw new Error("There was an error fetching the transaction.");
+}
+function getHost() {
+  const urlObj = new URL(window.location.href);
+  const host = urlObj.host;
+  console.log("BEFORE HOST");
+  if (host.includes("localhost"))
+    return "arweave.net";
+  console.log("host", host);
+  return host;
+}
+function getEdges(res2) {
+  if (!res2?.data?.transactions?.edges)
+    throw new Error("no edges");
+  return res2.data.transactions.edges;
+}
+function getNode(edge) {
+  return edge.node;
+}
+
+// src/App.jsx
+var FactNote = ({ tx, transaction }) => {
+  const [dataClone, setData] = (0, import_react33.useState)();
+  const [error, setError] = (0, import_react33.useState)();
+  (0, import_react33.useEffect)(() => {
+    if (transaction)
+      return setData(transaction);
+    const fetchData = () => {
+      if (!error && !tx && !transaction)
+        return setError("Please pass a tx or a transaction.");
+      if (!error && !dataClone && transaction)
+        return setData(transaction);
+      if (!error && !transaction && tx) {
+        fetchTx(tx).then(setData).catch((e) => setError(e.message));
+      }
+    };
+    fetchData();
   }, [tx, error]);
   if (error)
-    return errorComponent ? errorComponent : /* @__PURE__ */ import_react34.default.createElement("p", null, "An error occurred.");
-  if (!data && !tx)
-    return /* @__PURE__ */ import_react34.default.createElement("p", null, "Pass a tx to the query string");
-  if (import_react34.default.isValidElement(child)) {
-    return import_react34.default.cloneElement(child, { data: dataClone });
-  }
-  if (!import_react34.default.isValidElement(child)) {
-    return /* @__PURE__ */ import_react34.default.createElement("p", null, "INVALID");
-  }
-  return loadingComponent ? loadingComponent : /* @__PURE__ */ import_react34.default.createElement("p", null, "Loading...");
+    return /* @__PURE__ */ import_react33.default.createElement("p", null, error);
+  return null;
 };
 var App_default = FactNote;
 
@@ -26828,11 +26878,10 @@ var App_fixture_default = App_default;
 
 // cosmos.imports.ts
 var rendererConfig = {
-  "playgroundUrl": "http://localhost:5001",
+  "playgroundUrl": "http://localhost:5000",
   "rendererUrl": "http://localhost:3000"
 };
 var fixtures = {
-  "src/Test.fixture.jsx": { module: Test_fixture_exports },
   "src/App.fixture.jsx": { module: App_fixture_exports }
 };
 var decorators = {};

@@ -1,64 +1,53 @@
 import React, { useEffect, useState } from "react";
-// import { fetchTx } from "./fetch-tx";
+import { fetchTx } from "./fetch-data";
+
+/**
+ * @typedef {Object} Transaction
+ * @property {Object} block - The block information.
+ * @property {number} block.timestamp - The timestamp of the block.
+ * @property {number} [block.height] - The height of the block (optional).
+ * @property {string} id - The ID of the transaction.
+ * @property {Object} owner - The owner information.
+ * @property {string} owner.address - The address of the owner.
+ * @property {Array<Object>} tags - An array of tags associated with the transaction.
+ * @property {string} tags[].name - The name of the tag.
+ * @property {string} tags[].value - The value of the tag.
+ */
 
 /**
  * A community notes style for Permaweb content built on top of fact markets.
  *
  * @param {Object} props - The component props.
  * @param {string} [props.tx] - Optional string representing the transaction.
- * @returns {React.ReactNode} The rendered React component based on data and props.
+ * @param {Transaction} [props.transaction] - Optional transaction.
+ * @returns {React.ReactNode}
  */
-export const FactNote = ({ tx = "test" }) => {
+export const FactNote = ({ tx, transaction }) => {
   const [dataClone, setData] = useState();
   const [error, setError] = useState();
 
   useEffect(() => {
+    if (transaction) return setData(transaction);
     /**
      * Fetches the data based on the 'tx' prop and sets it to the component state.
      * Sets the error state to 'true' if an error occurs during the data fetching process.
      */
-    // const fetchData = () => {
-    //   if (!error && !dataClone && data) {
-    //     return setData(data);
-    //   }
-    //   if (!error && !data && tx) {
-    //     fetchTx(tx)
-    //       .then(setData)
-    //       .catch((e) => setError(e.message));
-    //   }
-    // };
-    // fetchData();
+    const fetchData = () => {
+      if (!error && !tx && !transaction)
+        return setError("Please pass a tx or a transaction.");
+      if (!error && !dataClone && transaction) return setData(transaction);
+
+      if (!error && !transaction && tx) {
+        fetchTx(tx)
+          .then(setData)
+          .catch((e) => setError(e.message));
+      }
+    };
+    fetchData();
   }, [tx, error]);
 
-  /**
-   * Render the errorComponent if 'error' state is true, otherwise render a default error message.
-   * @returns {React.ReactNode} The errorComponent or a default error message.
-   */
-  if (error) return errorComponent ? errorComponent : <p>An error occurred.</p>;
-
-  /**
-   * Render a message to prompt the user to pass a transaction ('tx') to the query string if 'data' and 'tx' props are not provided.
-   * @returns {React.ReactNode} The message to prompt for 'tx' prop.
-   */
-  if (!data && !tx) return <p>Pass a tx to the query string</p>;
-
-  /**
-   * If 'child' prop is a valid React element, clone the element and pass 'dataClone' as the 'data' prop.
-   * @returns {React.ReactNode} The cloned React element with 'dataClone' prop.
-   */
-  if (React.isValidElement(child)) {
-    return React.cloneElement(child, { data: dataClone });
-  }
-
-  if (!React.isValidElement(child)) {
-    return <p>INVALID</p>;
-  }
-
-  /**
-   * Render the loadingComponent if provided, otherwise render a default loading message.
-   * @returns {React.ReactNode} The loadingComponent or a default loading message.
-   */
-  return loadingComponent ? loadingComponent : <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+  return null;
 };
 
 export default FactNote;

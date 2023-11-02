@@ -1,4 +1,4 @@
-import Async from './hyper-async';
+import Async from "./hyper-async";
 
 const { fromPromise, of } = Async;
 
@@ -19,7 +19,7 @@ export async function fetchTxFromGateway(tx, host) {
   if (result.ok) {
     return result.json();
   }
-  throw new Error('There was an error fetching the transaction.');
+  throw new Error("There was an error fetching the transaction.");
 }
 
 /**
@@ -31,6 +31,6 @@ export async function fetchTxFromGateway(tx, host) {
 function getHost() {
   const urlObj = new URL(window.location.href);
   const host = urlObj.host;
-  if (host.includes('localhost')) return 'arweave.net';
+  if (host.includes("localhost")) return "arweave.net";
   return host;
 }

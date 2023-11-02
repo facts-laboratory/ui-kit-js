@@ -1,13 +1,6 @@
 # Renderer
 
-A ReactJS utiltity component for Renderers.
-
-
-## Example App
-
-There's a working example here:
-
-- https://github.com/jshaw-ar/renderer-shell-example
+A ReactJS component for "Community Notes" implemented using [Fact Markets](https://facts-protocol.arweave.dev/#/en/main).
 
 ## Install
 
@@ -15,61 +8,39 @@ There's a working example here:
 
 ## Use
 
+You can pass the Fact Note component either a `txid` or a `transaction`.  If you pass it a `transaction` the component will use the transaction. Otherwise, it will fetch the transaction using the `txid`.
+
 ```jsx
-import Shell from '@facts-kit/renderer';
-import './App.css';
+import FactNote from '@facts-kit/fact-note';
 
-const PBJ = ({ data }) => {
-  const {peanutbutter, jelly, bread} = data;
-  return (
-    <>
-      <p>Peanut Butter: {peanutbutter}</p>
-      <p>Jelly: {jelly}</p>
-      <p>Bread: {bread}</p>
-    </>
-  );
-};
-function App() {
-  return (
-    <div className="App">
-      Blah
-      <Shell
-        tx="xTqt_wZlmkw3iz5t_05Ll1bTXs1BSpK6MFghXo-Fdao" // optional but you need it if you dont pass data
-        child={<PBJ />}
-        errorComponent={<SomeErrorComponent />} // optional
-        loadingComponent={<SomeLoadingComponent />} // optional
-        data={{...}} // optional
-      />
-    </div>
-  );
-}
+...
 
-export default App;
+return (
+<FactNote tx={"tx goes id"} />
 
+// OR
+
+<FactNote transaction={"transaction object goes here"} />
+)
+
+...
 ```
 
-## Data Protocol Spec
 
-- https://specs.arweave.dev/?tx=F63wJCavB_sN2xxW-qtQ1Vv7_eRgmYCdcoQPMp_-N0w
+## Dev
 
-This spec can be used to define `DataProtocols` that can be used to build renderers for.
+This project uses [Cosmos](https://reactcosmos.org/) and a custom web server to serve Fixtures like storybook. It lets you build components in isolation.  I used cosmos so I could continue to use `esbuild` rather than being forced by tyrants to use `vite` or `webpack` like they allgedly do with Storybook.
 
-If I create a data protocol for a pb and j, it might need 3 things:
+Start the app server:
 
-- peanutbutter
-- jelly
-- bread
-
-You can create a PBJ data protocol for anyone to deploy pbj transactions to the web where the trasaction data might look like this: 
-
-```json
-{
-  "peanutbutter": "chunky",
-  "bread": "wheat",
-  "jelly": "strawberry"
-}
+```zsh
+npm start
 ```
 
-Then you can fetch any PBJ transaction id from arweave with tag: `{ "name": "Data-Protocol", "value": "pbj"}` grab those tx ids, and pass them to the Shell with a component built for that data protocol.
+Start cosmos:
 
+```zsh
+npm run cosmos
+```
 
+Open the [App](http://localhost:5000)
