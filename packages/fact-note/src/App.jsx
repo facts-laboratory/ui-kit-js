@@ -59,6 +59,10 @@ export const FactNote = ({ tx, transaction }) => {
   const [error, setError] = useState();
   const [isContentVisible, setContentVisibility] = useState(true);
 
+  const handleToggleContent = () => {
+    setContentVisibility(!isContentVisible);
+  };
+
   useEffect(() => {
     if (transaction) return setData(transaction);
 
@@ -71,9 +75,11 @@ export const FactNote = ({ tx, transaction }) => {
       if (!error && !transaction && tx) {
         getFactMarkets(tx)
           .then((data) => {
-            setNoteTx(data[0].id);
-            const desc = data[0].tags.find((tag) => tag.name === "Description");
-            setDescription(desc.value || "Something went wrong.");
+            setNoteTx(data[0]?.id);
+            const desc = data[0]?.tags.find(
+              (tag) => tag.name === "Description"
+            );
+            setDescription(desc?.value || "Something went wrong.");
             setData(data);
           })
           .catch((e) => setError(e.message));
@@ -84,11 +90,7 @@ export const FactNote = ({ tx, transaction }) => {
   }, [tx, error]);
 
   if (error) return <p>{error}</p>;
-
-  const handleToggleContent = () => {
-    setContentVisibility(!isContentVisible);
-  };
-
+  if (!noteTx) return null;
   return (
     <NotesContainer>
       <NotesHeader>
