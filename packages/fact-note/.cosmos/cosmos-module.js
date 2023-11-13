@@ -28320,6 +28320,9 @@ var FactNote = ({ tx, transaction }) => {
   const [noteTx, setNoteTx] = (0, import_react37.useState)();
   const [error, setError] = (0, import_react37.useState)();
   const [isContentVisible, setContentVisibility] = (0, import_react37.useState)(true);
+  const handleToggleContent = () => {
+    setContentVisibility(!isContentVisible);
+  };
   (0, import_react37.useEffect)(() => {
     if (transaction)
       return setData(transaction);
@@ -28330,9 +28333,11 @@ var FactNote = ({ tx, transaction }) => {
         return setData(transaction);
       if (!error && !transaction && tx) {
         getFactMarkets(tx).then((data) => {
-          setNoteTx(data[0].id);
-          const desc = data[0].tags.find((tag) => tag.name === "Description");
-          setDescription(desc.value || "Something went wrong.");
+          setNoteTx(data[0]?.id);
+          const desc = data[0]?.tags.find(
+            (tag) => tag.name === "Description"
+          );
+          setDescription(desc?.value || "Something went wrong.");
           setData(data);
         }).catch((e) => setError(e.message));
       }
@@ -28341,9 +28346,8 @@ var FactNote = ({ tx, transaction }) => {
   }, [tx, error]);
   if (error)
     return /* @__PURE__ */ import_react37.default.createElement("p", null, error);
-  const handleToggleContent = () => {
-    setContentVisibility(!isContentVisible);
-  };
+  if (!noteTx)
+    return null;
   return /* @__PURE__ */ import_react37.default.createElement(NotesContainer, null, /* @__PURE__ */ import_react37.default.createElement(NotesHeader, null, "Fact Market Notes ", dataClone && /* @__PURE__ */ import_react37.default.createElement("span", null, "(", dataClone.length, ")")), /* @__PURE__ */ import_react37.default.createElement(OtherUsersMessage, null, "Other Permaweb users added their thoughts."), isContentVisible && /* @__PURE__ */ import_react37.default.createElement(NotesContent, null, /* @__PURE__ */ import_react37.default.createElement("p", null, description), /* @__PURE__ */ import_react37.default.createElement(
     ReadMoreLink,
     {
@@ -28367,7 +28371,7 @@ var App_fixture_default = () => {
 
 // cosmos.imports.ts
 var rendererConfig = {
-  "playgroundUrl": "http://localhost:5001",
+  "playgroundUrl": "http://localhost:5000",
   "rendererUrl": "http://localhost:3000"
 };
 var fixtures = {
