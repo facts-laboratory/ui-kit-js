@@ -19,8 +19,10 @@
   "author": "Justin Shaw",
   "license": "ISC",
   "dependencies": {
+    "@facts-kit/facts-sdk-v2": "https://facts-sdk-js.g8way.io/latest",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "styled-components": "6.1.1"
   },
   "devDependencies": {
     "@facts-kit/packajs": "https://arweave.net/hnNArrNrudkFJTJ6AGnyDrsmD04JZIbdlEMrLNumUCQ",
