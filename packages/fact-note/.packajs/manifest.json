@@ -1,0 +1,36 @@
+{
+  "manifest": "arweave/paths",
+  "version": "0.1.0",
+  "index": {
+    "path": "index.html"
+  },
+  "paths": {
+    "0.0.5": {
+      "id": "JPlF1WMgBmpHrLXJ8o1yem6p4--XRFqAaHUS6yFv9yE"
+    },
+    "0.1.0": {
+      "id": "iPMqybT8PiQ9l9fzXYZB27ZYhID0dUaV9A1fi7C3BKk"
+    },
+    "readme": {
+      "id": "f3vtX48t0KmAgos3xW1cB691ub1ub0Xkk9YLqizn8YY"
+    },
+    "latest": {
+      "id": "iPMqybT8PiQ9l9fzXYZB27ZYhID0dUaV9A1fi7C3BKk"
+    },
+    "vite.svg": {
+      "id": "JI1vtONYd5AOoPGojbx6cIunUyILn8kjuFJP7uEDvwc"
+    },
+    "index.html": {
+      "id": "RYRIn4ws7U16fQPi9NynaOsrsW-3t0m4sa_Y1jcqf9I"
+    },
+    "assets/index-70c30a7d.css": {
+      "id": "5y-AED1U9M52yyKB3cHhgQ08OkB1PqUgmB5FOQk7iXM"
+    },
+    "assets/index-535a2489.js": {
+      "id": "CvK6_RNuROZQNyuehMk52nQr--LeBrl-8eG72SnV30Q"
+    },
+    "manifest": {
+      "id": "4JpkrAQX_3fIDRSFdGZ1nkyvQ53l22b8wDw0ezIFGdQ"
+    }
+  }
+}

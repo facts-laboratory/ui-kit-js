@@ -1,6 +1,6 @@
 {
   "name": "@facts-kit/fact-note",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "A container to pass a tx (or data) and a compomnent through.  It returns the component with the data of the transaction data displayed.",
   "main": "app.js",
   "module": "app.js",
@@ -10,9 +10,9 @@
     "test": "test",
     "build:types": "rm -rf dist; tsc",
     "build-fixtures": "esbuild cosmos-server.js --bundle --minify --outfile=dist/renderer.js",
-    "build": "npm rum build:types && node ./scripts/build.mjs && cp package.json ./dist/",
+    "build": "npm rum build:types && node ./scripts/build.mjs && cp package.json dist/package.json && (cd dist && npm pack)",
     "build-module": "node ./scripts/build-module.js",
-    "perma-pub": "npm run build && (cd dist && npm pack) && node ./scripts/perma-pub.mjs ./dist/ar-frame-0.0.2.tgz",
+    "perma-pub": "npm run build && packajs pubjs -t Type=perma-package -t Title=Fact-Note -t Description=\"Community Notes implemented with Fact Markets\" -t Read-Me=https://github.com/facts-laboratory/ui-kit-js/blob/main/packages/fact-note/README.md -t Repository=https://github.com/facts-laboratory/ui-kit-js/tree/main/packages/fact-note -t Render-With=jkPpggGUW-ofqKKYzG4Al8luFwNURoqXkpLFjqmiS58 -w ${PATH_TO_WALLET}",
     "start": "nodemon .cosmos/cosmos-server.js",
     "cosmos": "cosmos --expose-imports"
   },
@@ -25,7 +25,7 @@
     "styled-components": "6.1.1"
   },
   "devDependencies": {
-    "@facts-kit/packajs": "https://arweave.net/hnNArrNrudkFJTJ6AGnyDrsmD04JZIbdlEMrLNumUCQ",
+    "@facts-kit/packajs": "https://packajs.ar-io.dev/latest",
     "@types/react": "18.2.17",
     "esbuild": "0.18.17",
     "express": "4.18.2",

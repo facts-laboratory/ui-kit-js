@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getFactMarkets } from "./get-fact-markets";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 const NotesContainer = styled.div`
   background-color: #fff;
