@@ -7,10 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "node ./scripts/perma-deploy.mjs ./dist"
+    "deploy": "rm -rf dist-*; node ./scripts/perma-deploy.mjs ./dist"
   },
   "dependencies": {
-    "@facts-kit/fact-note": "https://arweave.net/usph1d_j-VLaXCCQsuTd5L34L1VkjJRTnlC89GNvFTQ/latest",
+    "@facts-kit/fact-note": "https://arweave.net/thJHM61eZThoFXGiduLXPYJy6Qf7Y646MO8fAtMFPNc/latest",
     "@loadable/component": "5.15.3",
     "@reduxjs/toolkit": "1.9.3",
     "react": "^18.2.0",

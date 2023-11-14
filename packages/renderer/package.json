@@ -9,7 +9,7 @@
     "test": "test",
     "build:types": "rm -rf dist; tsc",
     "build": "npm rum build:types && node ./scripts/build.js && cp package.json ./dist/",
-    "perma-pub": "npm run build && (cd dist && npm pack) && node ./scripts/perma-pub.mjs ./dist/ar-frame-0.0.2.tgz"
+    "perma-pub": "rm dist-*; npm run build && (cd dist && npm pack) && node ./scripts/perma-pub.mjs ./dist/ar-frame-0.0.2.tgz"
   },
   "author": "Justin Shaw",
   "license": "ISC",
